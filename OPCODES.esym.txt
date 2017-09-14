@@ -26,4 +26,4 @@ OUT     		; OUT Rx 			prints out Rx value
 INC				; INC Rx 			Rx <- Rx + 1
 DEC				; DEC Rx 			Rx <- Rx - 1
 MUL				; MUL Rx,Ry 		Rx <- Rx * Ry
-DIV				; DIV Rx,Ry 		Rx <- Rx / Ry; Ry <- Rx % Ry
+DIV				; DIV Rx,Ry 		Rx <- Rx / Ry Ry <- Rx % Ry
