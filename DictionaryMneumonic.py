@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 import re
-
+import codecs
 
 def createDictionary(file):
     dic = {}
@@ -123,9 +121,10 @@ if __name__ == "__main__":
     path_reg = ('./REGCODES.esym.txt')
     path_instructions = ('./testeProf.txt')
     # path_instructions = ('./testeInstructions.txt')
+    path_file_to_write = ("./ArquivosCodigos.txt")
 
     # RegCodes
-    reg_reader = open(path_reg, 'r')
+    reg_reader = codecs.open(path_reg, 'r', 'UTF-8')
     aux_reg = reg_reader.readlines()
 
     print("\n\n --Dicionario de Registradores--- \n")
@@ -133,7 +132,7 @@ if __name__ == "__main__":
     print(dici_reg)
 
     # OpCodes
-    op_reader = open(path_opcode, 'r')
+    op_reader = codecs.open(path_opcode, 'r', 'UTF-8')
     op_lines = op_reader.readlines()
 
     print("\n\n ---Dicionario de OPCODES--- \n")
@@ -144,10 +143,25 @@ if __name__ == "__main__":
 
     # Instructions example
 
-    instructions_reader = open(path_instructions, 'r')
+    instructions_reader = codecs.open(path_instructions, 'r', 'UTF-8')
     instr_lines = instructions_reader.readlines()
 
     instructionsVector = createInstructions(instr_lines, dici_op, dici_reg)
 
     print("\n\n ---OUTPUT instrucoes --- \n")
     print(instructionsVector)
+    
+    fileW = open(path_file_to_write, "w")
+    i = 0
+    for j in instructionsVector:
+        string = str(j)
+        if i < len(instructionsVector) - 1:
+            fileW.write(string + "\n")
+        else:
+            fileW.write(string)
+        i += 1
+    fileW.close()
+
+    
+    
+    
