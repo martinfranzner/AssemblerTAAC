@@ -64,18 +64,21 @@ def createInstructions(file, dicionario, registradores):
                 elif j in registradores:
                     register += 1
                     comands_aux.append(int(registradores[j]))
+                    #print(j)
                 elif '[' in j:
                     index += 1
                     comands_aux.append(int(j.strip("[]")))
+                    #print(j.strip("[]"))
 
                     if aux_count == 1:
                         isRegAddres = False
                     else:
                         isRegAddres = True
-                else:
-                    immediate += 1
+                else: 
                     if j != '':
+                        immediate += 1
                         comands_aux.append(int(j))
+                        #print(j)
 
             aux_count += 1
 
@@ -100,6 +103,7 @@ def createInstructions(file, dicionario, registradores):
                     vectorComand.append(dicionario["MOV_RI"])
                 else:
                     vectorComand.append(each)
+                    
 
             elif index == 1 and immediate == 1:  # Para quando tem [NUM] e NUM
                 if each == "MOV":
