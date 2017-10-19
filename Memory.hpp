@@ -14,6 +14,7 @@ using addres = unsigned int;
 #include <stdio.h>
 #include <vector>
 #include <iostream>
+#include <algorithm>
 using namespace std;
 class Memory {
 private:
@@ -22,6 +23,7 @@ private:
 public:
     Memory();
     void insereMemoria(vector<int> instrucoes, unsigned int posInicMemoria);
+    vector<int>* getMemoria(){return this->memoria;};
     
 };
 #endif /* Memory_hpp */

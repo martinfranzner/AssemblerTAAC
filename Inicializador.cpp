@@ -9,8 +9,15 @@
 #include "Inicializador.hpp"
 Inicializador::Inicializador(string caminhoInstructions, int posicaoIncialMemoria){
     vector<int> instructionsVector;
-     OpenFile *op = new OpenFile(caminhoInstructions);
-    instructionsVector = op->toLineString();
+    
+     OpenFile *inst = new OpenFile(caminhoInstructions);
+    instructionsVector = inst->toLineString();
+    
+    
     Memory *m = new Memory();
     m->insereMemoria(instructionsVector, posicaoIncialMemoria);
+    Executor *e = new Executor();
+    e->executar(*m->getMemoria(), posicaoIncialMemoria);
+    
+    
 }
