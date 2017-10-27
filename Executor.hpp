@@ -12,10 +12,11 @@
 #include <stdio.h>
 class Executor {
 private:
-    int FL,PC;
-    int regVet[4];
+    int FL;
+    unsigned int PC;
+    std::vector<int> regVet;
 public:
     Executor();
-    void executar(vector<int> memory, int posicaoIncialMemoria);
+    void executar(vector<int> memory, int& posicaoIncialMemoria);
 };
 #endif /* Executor_hpp */
