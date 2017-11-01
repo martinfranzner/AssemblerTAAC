@@ -10,6 +10,7 @@ set(SOURCE_FILES main.cpp
         EmachineController.hpp
         Memory.hpp
         Memory.cpp
+        catch.hpp
 
-        )
+        TestesExemplo.cpp)
 add_executable(TaacCerto ${SOURCE_FILES})

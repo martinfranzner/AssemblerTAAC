@@ -1,30 +1,42 @@
-//
-//  main.cpp
-//  Borsa&MartinAssembler
-//
-//  Created by Martin Franzner on 19/10/17.
-//  Copyright © 2017 Martin Franzner. All rights reserved.
-//
-
 #include <iostream>
 #include "Memory.hpp"
 #include "Executor.hpp"
 #include "EmachineController.hpp"
 
-#include <vector>
-#include <string>
+#define CATCH_CONFIG_RUNNER
+
+#include "catch.hpp"
 
 using namespace std;
 namespace {
-    std::string basePath = "/Users/martinfranzner/Documents/PUC COMPUTAÇÃO/4o semestre/Arquitetura Computadores 2/Assembler/";
+  string basePath = "/home/eborsa/CLionProjects/TAAC/martinViadao/AssemblerTAAC/";
+  //std::string basePath = "/Users/martinfranzner/Documents/PUC COMPUTAÇÃO/4o semestre/Arquitetura Computadores 2/Assembler/";
 }
-int main(int argc, const char * argv[]) {
-    string caminhoInstructions = basePath+"MDCcodificado.txt";
-    EmachineController emachine = *new EmachineController();
-    Executor executor = * new Executor;
-    
-    int initPosition = 0;
-    emachine.inicia(caminhoInstructions,initPosition);
 
-    return 0;
+#define UNIT_TEST_ENABLE
+#ifndef UNIT_TEST_ENABLE
+
+int main(int argc, const char *argv[]) {
+  string caminhoInstructions = basePath + "MDCcodificado.txt";
+  EmachineController emachine = *new EmachineController();
+  Executor executor = *new Executor;
+
+  int initPosition = 0;
+  emachine.inicia(caminhoInstructions, initPosition);
+
+  return 0;
 }
+
+#else
+
+int main(int argc, char *argv[]) {
+  Catch::Session session; // There must be exactly one instance
+  int returnCode;
+  returnCode = session.applyCommandLine(argc, reinterpret_cast<const char *const *const>(argv));
+  if (returnCode != 0) // Indicates a command line error
+    return returnCode;
+  int numFailed = session.run();
+  return (numFailed < 0xff ? numFailed : 0xff);
+}
+
+#endif
