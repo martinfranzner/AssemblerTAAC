@@ -9,17 +9,17 @@
 
 using namespace std;
 namespace {
-  string basePath = "/home/eborsa/CLionProjects/TAAC/martinViadao/AssemblerTAAC/";
-  //std::string basePath = "/Users/martinfranzner/Documents/PUC COMPUTAÇÃO/4o semestre/Arquitetura Computadores 2/Assembler/";
+  string basePath = "/home/eborsa/CLionProjects/TAAC/martinViadao/AssemblerTAAC/txtFiles/";
+  //std::string basePath = "/Users/martinfranzner/Documents/PUC COMPUTAÇÃO/4o semestre/Arquitetura Computadores 2/Assembler/txtFiles";
 }
 
-#define UNIT_TEST_ENABLE
+//#define UNIT_TEST_ENABLE
 #ifndef UNIT_TEST_ENABLE
 
 int main(int argc, const char *argv[]) {
   string caminhoInstructions = basePath + "MDCcodificado.txt";
-  EmachineController emachine = *new EmachineController();
-  Executor executor = *new Executor;
+  EmachineController emachine;
+  Executor executor;
 
   int initPosition = 0;
   emachine.inicia(caminhoInstructions, initPosition);
