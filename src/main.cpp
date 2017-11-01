@@ -1,11 +1,12 @@
 #include <iostream>
 #include "Memory.hpp"
-#include "Executor.hpp"
-#include "EmachineController.hpp"
+#include "Fetcher.hpp"
+#include "Loader.hpp"
 
 #define CATCH_CONFIG_RUNNER
 
 #include "catch.hpp"
+#include "Controller.h"
 
 using namespace std;
 namespace {
@@ -18,11 +19,10 @@ namespace {
 
 int main(int argc, const char *argv[]) {
   string caminhoInstructions = basePath + "MDCcodificado.txt";
-  EmachineController emachine;
-  Executor executor;
-
+  Controller controller;
   int initPosition = 0;
-  emachine.inicia(caminhoInstructions, initPosition);
+
+  controller.inicia(caminhoInstructions, initPosition);
 
   return 0;
 }

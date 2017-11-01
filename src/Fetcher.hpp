@@ -1,5 +1,5 @@
 //
-//  Executor.hpp
+//  Fetcher.hpp
 //  AssemblerLoader
 //
 //  Created by Martin Franzner on 19/10/17.
@@ -10,13 +10,13 @@
 #define Executor_hpp
 #include "Memory.hpp"
 #include <stdio.h>
-class Executor {
+class Fetcher {
 private:
     int FL;
     unsigned int PC;
     std::vector<int> regVet;
 public:
-    Executor();
-    void executar(vector<int> memory, int& posicaoIncialMemoria);
+    Fetcher();
+    void fetchInstruction(Memory &memory, int &posicaoIncialMemoria);
 };
 #endif /* Executor_hpp */

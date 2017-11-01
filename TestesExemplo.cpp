@@ -3,7 +3,7 @@
 //
 
 #include "src/catch.hpp"
-#include "src/EmachineController.hpp"
+#include "src/Loader.hpp"
 
 using namespace std;
 
@@ -19,13 +19,13 @@ SCENARIO("Parte De Cache do Trabalho"){
   }
   WHEN("fazemos qualquer merda") {
     THEN("Coco") {
-      string caminhoInstructions = basePath + "MDCcodificado.txt";
-      EmachineController emachine;
-      Executor executor;
-      int initPosition = 0;
-      emachine.inicia(caminhoInstructions, initPosition);
-      REQUIRE(&emachine != nullptr);
-      REQUIRE(&executor != nullptr);
+//      string caminhoInstructions = basePath + "MDCcodificado.txt";
+//      Loader emachine;
+//      Fetcher fetcher;
+//      int initPosition = 0;
+//      emachine.inicia(caminhoInstructions, initPosition, <#initializer#>);
+//      REQUIRE(&emachine != nullptr);
+//      REQUIRE(&fetcher != nullptr);
     }
   }
 }

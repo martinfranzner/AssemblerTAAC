@@ -22,8 +22,7 @@ private:
     
 public:
     Memory();
-    void insereMemoria(vector<int> instrucoes, unsigned int posInicMemoria);
-    vector<int> getMemoria(){return this->memory;};
+    vector<int>* getMemoria(){return &this->memory;};
     
 };
 #endif /* Memory_hpp */

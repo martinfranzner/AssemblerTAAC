@@ -1,16 +1,8 @@
-//
-//  EmachineController.hpp
-//  AssemblerLoader
-//
-//  Created by Martin Franzner on 14/10/17.
-//  Copyright © 2017 Martin Franzner. All rights reserved.
-//
-
 #ifndef Inicializador_hpp
 #define Inicializador_hpp
 
 #include "Memory.hpp"
-#include "Executor.hpp"
+#include "Fetcher.hpp"
 
 #include <stdio.h>
 #include <string>
@@ -19,18 +11,20 @@
 
 using namespace std;
 
-class EmachineController {
+class Loader {
 private:
   std::vector<int> instructionVector;
 public:
   const vector<int> &getInstructionVector() const;
 
 public:
-  EmachineController();
+  Loader();
 
-  void inicia(string caminhoInstructions, int& posicaoIncialMemoria);
+  void inicia(string caminhoInstructions, int &posicaoIncialMemoria, Memory &mainMemory);
 
   vector<int> getVectorFromFile(const string &instructionsPath) const;
+
+  void insereMemoria(Memory &m, unsigned int posInicMemoria);
 };
 
 #endif /* Inicializador_hpp */
