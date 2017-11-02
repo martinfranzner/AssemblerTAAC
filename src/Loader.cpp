@@ -2,7 +2,6 @@
 #include "Loader.hpp"
 
 Loader::Loader() {
-  this->instructionVector = *new std::vector<int>();
 }
 
 vector<int> Loader::getVectorFromFile(const string &instructionsPath) const {
@@ -24,21 +23,10 @@ vector<int> Loader::getVectorFromFile(const string &instructionsPath) const {
   return instructionsVector;
 }
 
-void Loader::inicia(string caminhoInstructions, int &posicaoIncialMemoria, Memory &mainMemory) {
-  this->instructionVector = this->getVectorFromFile(caminhoInstructions);
-  this->insereMemoria(mainMemory, posicaoIncialMemoria);
-//  Fetcher e ;
-//  e.fetchInstruction(*mainMemory.getMemoria(), posicaoIncialMemoria);
-}
-
-void Loader::insereMemoria(Memory &m, unsigned int posInicMemoria) {
-  for (auto each : this->instructionVector) {
+void Loader::insereMemoria(Memory &m, unsigned int posInicMemoria, vector<int> vetorDeInstrucoes) {
+  for (auto each : vetorDeInstrucoes) {
     m.getMemoria()->at(posInicMemoria) = each;
     posInicMemoria++;
   }
-}
-
-const vector<int> &Loader::getInstructionVector() const {
-  return instructionVector;
 }
 

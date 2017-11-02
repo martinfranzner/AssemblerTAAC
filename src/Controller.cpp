@@ -6,8 +6,10 @@
 
 Controller::Controller() {}
 
-void Controller::inicia(string caminhoInstructions, int &posicaoIncialMemoria) {
-  this->loader.inicia(caminhoInstructions, posicaoIncialMemoria, this->memory);
-  this->fetcher.fetchInstruction(this->memory, posicaoIncialMemoria);
+void Controller::init(string instructionPath, int &memInitPos) {
+  this->instructionVector = helper.getVectorFromFile(instructionPath);
+  this->loader.insereMemoria(this->memory, memInitPos,instructionVector );
+//  this->fetcher.fetchInstructionInMemory(this->memory, memInitPos);
+  this->fetcher.fetchInstruction(this->instructionVector, this->cache, this->memory, memInitPos);
 }
 

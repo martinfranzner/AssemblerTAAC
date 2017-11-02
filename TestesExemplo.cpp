@@ -9,7 +9,7 @@ using namespace std;
 
 string basePath = "/home/eborsa/CLionProjects/TAAC/martinViadao/AssemblerTAAC/";
 
-SCENARIO("Parte De Cache do Trabalho"){
+SCENARIO("Parte De CacheLine do Trabalho"){
   GIVEN("Criando uma memoria") {
     WHEN("fazemos qualquer merda") {
       THEN("Coco") {
@@ -23,7 +23,7 @@ SCENARIO("Parte De Cache do Trabalho"){
 //      Loader emachine;
 //      Fetcher fetcher;
 //      int initPosition = 0;
-//      emachine.inicia(caminhoInstructions, initPosition, <#initializer#>);
+//      emachine.init(caminhoInstructions, initPosition, <#initializer#>);
 //      REQUIRE(&emachine != nullptr);
 //      REQUIRE(&fetcher != nullptr);
     }

@@ -7,17 +7,21 @@
 
 
 #include "Loader.hpp"
+#include "Helper.h"
 
 class Controller {
 
   Loader loader;
   Fetcher fetcher;
   Memory memory;
+  Helper helper;
+  Cache cache;
+  vector<int> instructionVector;
 
 public:
   Controller();
 
-  void inicia(string caminhoInstructions, int& posicaoIncialMemoria);
+  void init(string instructionPath, int &memInitPos);
 
 };
 

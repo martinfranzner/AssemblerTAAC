@@ -13,18 +13,12 @@ using namespace std;
 
 class Loader {
 private:
-  std::vector<int> instructionVector;
-public:
-  const vector<int> &getInstructionVector() const;
-
 public:
   Loader();
 
-  void inicia(string caminhoInstructions, int &posicaoIncialMemoria, Memory &mainMemory);
-
   vector<int> getVectorFromFile(const string &instructionsPath) const;
 
-  void insereMemoria(Memory &m, unsigned int posInicMemoria);
+  void insereMemoria(Memory &m, unsigned int posInicMemoria, vector<int> vetorDeInstrucoes);
 };
 
 #endif /* Inicializador_hpp */

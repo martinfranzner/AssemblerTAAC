@@ -18,11 +18,10 @@ namespace {
 #ifndef UNIT_TEST_ENABLE
 
 int main(int argc, const char *argv[]) {
-  string caminhoInstructions = basePath + "MDCcodificado.txt";
+  string instructionPath = basePath + "MDCcodificado.txt";
   Controller controller;
   int initPosition = 0;
-
-  controller.inicia(caminhoInstructions, initPosition);
+  controller.init(instructionPath, initPosition);
 
   return 0;
 }
