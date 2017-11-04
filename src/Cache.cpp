@@ -22,7 +22,6 @@ void Cache::insertInstruction(MemoryAddress newLine) {
   if(position==128){
     position=0;
   }else {
-    newLine.setRoll(position);
     this->getCacheLinesNotConst()->at(position) = newLine;
     position++;
   }
@@ -35,7 +34,11 @@ std::vector<MemoryAddress >* Cache::getCacheLinesNotConst() {
 int Cache::fetchInstruction(unsigned int &instruction, Memory &memory) {
   if(!isInCache(instruction)) // Cache miss
   {                                               // A cache faz isso
+    this->cacheMiss++;
     insertInstructionInCache(instruction, memory);
+  }
+  else{
+    this->cacheHit++;
   }
   return fetchInCache(instruction).second;
 }
@@ -52,11 +55,11 @@ bool Cache::isInCache(int instruction) {
 void Cache::insertInstructionInCache(unsigned int &instruction, Memory &memory) {
   for (int i=0; i<memory.getMemoria()->size();i++) {
     if(memory.getMemoria()->at(i) == instruction){
-      MemoryAddress coco;
-      coco.setWord(memory.getMemoria()->at(i));
-      coco.setTag(static_cast<int>((i/memory.getMemoria()->size())*BLOCKSIZE));
-      coco.setRoll(-1);
-      this->insertInstruction(coco);
+      MemoryAddress address;
+      address.setWord(memory.getMemoria()->at(i));
+      address.setTag(static_cast<int>((i/memory.getMemoria()->size())*BLOCKSIZE));
+      address.setRoll(i%BLOCKSIZE);
+      this->insertInstruction(address);
       break;
     }
   }

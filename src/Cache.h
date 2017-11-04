@@ -29,6 +29,8 @@ class Cache {
 private:
   std::vector<MemoryAddress> cacheLines;
   int position=0;
+  int cacheHit = 0;
+  int cacheMiss=0;
 public:
   Cache();
 
