@@ -1,8 +1,4 @@
-//
-// Created by eborsa on 01/11/17.
-//
 
-#include <termcap.h>
 #include "Cache.h"
 
 Cache::Cache() {
@@ -44,8 +40,8 @@ int Cache::fetchInstruction(unsigned int &instruction, Memory &memory) {
 }
 
 bool Cache::isInCache(int instruction) {
-  for (int i=0; i<this->getCacheLines()->size();i++) {
-    if(this->getCacheLines()->at(i).getWord() == instruction){
+  for (auto i : *this->getCacheLines()) {
+    if(i.getWord() == instruction){
       return true;
     }
   }
@@ -53,7 +49,7 @@ bool Cache::isInCache(int instruction) {
 }
 
 void Cache::insertInstructionInCache(unsigned int &instruction, Memory &memory) {
-  for (int i=0; i<memory.getMemoria()->size();i++) {
+  for (unsigned int i=0; i<memory.getMemoria()->size();i++) {
     if(memory.getMemoria()->at(i) == instruction){
       MemoryAddress address;
       address.setWord(memory.getMemoria()->at(i));
@@ -66,9 +62,9 @@ void Cache::insertInstructionInCache(unsigned int &instruction, Memory &memory) 
 }
 
 const pair<bool, int> Cache::fetchInCache(int instruction) const {
-  for (int i=0; i<this->getCacheLines()->size();i++) {
-    if(this->getCacheLines()->at(i).getWord() == instruction){
-      return {true, this->getCacheLines()->at(i).getWord()};
+  for (auto i : *this->getCacheLines()) {
+    if(i.getWord() == instruction){
+      return {true, i.getWord()};
     }
   }
   return {false,-1};

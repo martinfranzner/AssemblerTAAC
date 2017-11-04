@@ -28,7 +28,7 @@ class Cache {
   // na cacheline so tem a tag
 private:
   std::vector<MemoryAddress> cacheLines;
-  int position=0;
+  unsigned int position=0;
   int cacheHit = 0;
   int cacheMiss=0;
 public:
