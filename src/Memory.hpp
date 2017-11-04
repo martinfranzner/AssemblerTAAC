@@ -11,18 +11,18 @@
 using word = int;
 using addres = unsigned int;
 
-#include <stdio.h>
+#include <cstdio>
 #include <vector>
 #include <iostream>
 #include <algorithm>
 using namespace std;
 class Memory {
 private:
-    vector<int> memory;
+    vector<unsigned int> memory;
     
 public:
     Memory();
-    vector<int>* getMemoria(){return &this->memory;};
+    vector<unsigned int>* getMemoria(){return &this->memory;};
     
 };
 #endif /* Memory_hpp */

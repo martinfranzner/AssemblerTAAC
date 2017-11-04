@@ -1,12 +1,8 @@
 #include <iostream>
-#include "Memory.hpp"
-#include "Fetcher.hpp"
-#include "Loader.hpp"
+#include "Controller.h"
 
 #define CATCH_CONFIG_RUNNER
-
 #include "catch.hpp"
-#include "Controller.h"
 
 using namespace std;
 namespace {
@@ -20,7 +16,7 @@ namespace {
 int main(int argc, const char *argv[]) {
   string instructionPath = basePath + "MDCcodificado.txt";
   Controller controller;
-  int initPosition = 0;
+  unsigned int initPosition = 0;
   controller.init(instructionPath, initPosition);
 
   return 0;

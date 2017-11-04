@@ -12,16 +12,16 @@
 class Controller {
 
   Loader loader;
-  Fetcher fetcher;
+  CPU cpu;
   Memory memory;
   Helper helper;
   Cache cache;
-  vector<int> instructionVector;
+  vector<unsigned int> instructionVector;
 
 public:
   Controller();
 
-  void init(string instructionPath, int &memInitPos);
+  void init(string instructionPath, unsigned int &memInitPos);
 
 };
 

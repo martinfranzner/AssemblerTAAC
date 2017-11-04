@@ -9,7 +9,7 @@
 #include "Memory.hpp"
 
 Memory::Memory() {
-  this->memory = *new vector<int>(16777216);
+  this->memory = *new vector<unsigned int>(16777216);
 }
 
 //void Memory::insereMemoria(vector<int> instrucoes, unsigned int posInicMemoria) {

@@ -7,33 +7,45 @@
 
 
 #include <vector>
-#include "CacheLine.h"
+#include "MemoryAddress.h"
+#include "Memory.hpp"
+
+#define BLOCKSIZE 64
 
 
 class Cache {
   // a memoria tem 16777216bytes
   // a tag sao 2^11 = 2048 blocos
   // Ou seja, essa memoria tem 2048 blocos
-  // E cada bloco tem 8192bytes
+  // E cada bloco tem 64 linhas!!!!!! <<<<<<-------
   // Uma cahce tem 128 linhas
-  // cada cache line tem 64 bytes (8192/128)
-  // mas os endereços so usarao 24 bytes
+  // mas os endereços so usarao 24 bytes     <------
+  // A roll eh a posicao no bloco !!!!! E nao na cache
+  // todas aqueles que tem a mesma roll caem na mesma cashe line
   // word com 6bits que eh o conteudo
   // roll que eh qual linha da cache com 7bits
   // tag com 11 bits falando qual bloco da memoria principal
+  // na cacheline so tem a tag
 private:
-  std::vector<CacheLine> cacheLines;
+  std::vector<MemoryAddress> cacheLines;
   int position=0;
 public:
   Cache();
 
-  void insertInstrucion(CacheLine newLine);
+  void insertInstruction(MemoryAddress newLine);
 
-  const std::vector<CacheLine >* getCacheLines() const ;
+  const std::vector<MemoryAddress >* getCacheLines() const ;
 
-  void setCacheLines(const std::vector<CacheLine *> &cacheLines);
+  std::vector<MemoryAddress >* getCacheLinesNotConst();
 
-  std::vector<CacheLine >* getCacheLinesNotConst();
+  int fetchInstruction(unsigned int &instruction, Memory &memory);
+
+  bool isInCache(int instruction);
+
+  void insertInstructionInCache(unsigned int &instruction, Memory &memory);
+
+  const pair<bool, int> fetchInCache(int instruction) const;
+
 };
 
 

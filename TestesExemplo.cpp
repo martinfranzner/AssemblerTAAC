@@ -9,7 +9,7 @@ using namespace std;
 
 string basePath = "/home/eborsa/CLionProjects/TAAC/martinViadao/AssemblerTAAC/";
 
-SCENARIO("Parte De CacheLine do Trabalho"){
+SCENARIO("Parte De MemoryAddress do Trabalho"){
   GIVEN("Criando uma memoria") {
     WHEN("fazemos qualquer merda") {
       THEN("Coco") {
@@ -21,11 +21,11 @@ SCENARIO("Parte De CacheLine do Trabalho"){
     THEN("Coco") {
 //      string caminhoInstructions = basePath + "MDCcodificado.txt";
 //      Loader emachine;
-//      Fetcher fetcher;
+//      CPU cpu;
 //      int initPosition = 0;
 //      emachine.init(caminhoInstructions, initPosition, <#initializer#>);
 //      REQUIRE(&emachine != nullptr);
-//      REQUIRE(&fetcher != nullptr);
+//      REQUIRE(&cpu != nullptr);
     }
   }
 }

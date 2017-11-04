@@ -6,15 +6,15 @@
 #define TAACCERTO_CACHELINE_H
 
 
-class CacheLine {
+class MemoryAddress {
   int tag;  //
   int roll; // é a linha da cache
   int word; // conteudo
 
 public:
-  CacheLine();
+  MemoryAddress();
 
-  CacheLine(int tag, int roll, int word);
+  MemoryAddress(int tag, int roll, int word);
 
   void setTag(int tag);
 

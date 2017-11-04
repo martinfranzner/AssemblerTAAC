@@ -12,7 +12,7 @@ using namespace std;
 class Helper {
 public:
 
-  vector<int> getVectorFromFile(const string &instructionsPath) const;
+  vector<unsigned int> getVectorFromFile(const string &instructionsPath) const;
 
 };
 

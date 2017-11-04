@@ -5,10 +5,10 @@
 #include <fstream>
 #include "Helper.h"
 
-vector<int> Helper::getVectorFromFile(const string &instructionsPath) const {
+vector<unsigned int> Helper::getVectorFromFile(const string &instructionsPath) const {
   ifstream file;
   string linha="";
-  vector<int> instructionsVector;
+  vector<unsigned int> instructionsVector;
 
   file.open(instructionsPath);
   if (file.is_open())

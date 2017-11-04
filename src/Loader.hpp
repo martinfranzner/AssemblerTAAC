@@ -2,7 +2,7 @@
 #define Inicializador_hpp
 
 #include "Memory.hpp"
-#include "Fetcher.hpp"
+#include "CPU.hpp"
 
 #include <stdio.h>
 #include <string>
@@ -16,9 +16,7 @@ private:
 public:
   Loader();
 
-  vector<int> getVectorFromFile(const string &instructionsPath) const;
-
-  void insereMemoria(Memory &m, unsigned int posInicMemoria, vector<int> vetorDeInstrucoes);
+  void insereMemoria(Memory &m, unsigned int initMemPos, vector<unsigned int> vetorDeInstrucoes);
 };
 
 #endif /* Inicializador_hpp */
