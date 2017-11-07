@@ -168,8 +168,7 @@ CPU::requireInstruction(vector<unsigned int> &instructionVector, Cache &cache, M
       case 15: // INC REG
         PC++;
         reg1 = cache.consultCache(memory, (PC));
-        reg1 = reg1 + 1;
-        regVet[instructionVector.at(PC)] = reg1;
+        regVet[reg1] = regVet[reg1] + 1;
 
         //regVet[memory.getMemoria()->at(PC)] = regVet[memory.getMemoria()->at(PC)] + 1;
         PC++;
@@ -177,8 +176,7 @@ CPU::requireInstruction(vector<unsigned int> &instructionVector, Cache &cache, M
       case 16: // DEC REG
         PC++;
         reg1 = cache.consultCache(memory, (PC));
-        reg1 = reg1 + 1;
-        regVet[instructionVector.at(PC)] = reg1;
+        regVet[reg1] = regVet[reg1] - 1;
 
         //regVet[memory.getMemoria()->at(PC)] = regVet[memory.getMemoria()->at(PC)] - 1;
         PC++;
@@ -188,7 +186,7 @@ CPU::requireInstruction(vector<unsigned int> &instructionVector, Cache &cache, M
         reg1 = cache.consultCache(memory, (PC));
         reg2 = cache.consultCache(memory, (PC+1));
 
-        regVet[instructionVector.at(PC)] = reg1*reg2;
+        regVet[reg1] = regVet[reg1]*regVet[reg2];
 
         //regVet[memory.getMemoria()->at(PC)] = regVet[memory.getMemoria()->at(PC)] * regVet[memory.getMemoria()->at(PC + 1)];
         PC++;
@@ -198,7 +196,7 @@ CPU::requireInstruction(vector<unsigned int> &instructionVector, Cache &cache, M
         PC++;
         reg1 = cache.consultCache(memory, (PC));
         reg2 = cache.consultCache(memory, (PC+1));
-        regVet[instructionVector.at(PC)] = reg1*reg2;
+        regVet[reg1] = regVet[reg1]/regVet[reg2];
 
             //regVet[memory.getMemoria()->at(PC)] = regVet[memory.getMemoria()->at(PC)] / regVet[memory.getMemoria()->at(PC + 1)];
         PC++;
