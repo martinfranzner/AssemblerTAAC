@@ -21,6 +21,8 @@ void CPU::requireInstruction
         PC++;
         break;
       case 1: // HALT
+        cout << "Number Of Cache Hit: " << cache.getCacheHit() << "\n";
+        cout << "Number Of Cache Miss: " << cache.getCacheMiss() << "\n";
         cout<< "Deseja continuar? 1 or 0\n"<<endl;
         cin >> status;
         if(status==0) {

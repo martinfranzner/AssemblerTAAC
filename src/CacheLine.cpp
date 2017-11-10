@@ -5,11 +5,14 @@
 #include "CacheLine.h"
 
 
-
+#define BLOCKSIZE 64
 
 CacheLine::CacheLine() {
   this->tag = "";
-
+  std::pair<string,int> initializer = {"",-1};
+  for(int i=0;i<BLOCKSIZE;i++){
+    this->rowAndWord.push_back(initializer);
+  }
 }
 
 const string &CacheLine::getTag() const {
@@ -17,10 +20,10 @@ const string &CacheLine::getTag() const {
 }
 
 CacheLine::CacheLine(const string &tag, const vector<pair<string, int>> &rowAmdWord) : tag(tag),
-                                                                                       rowAmdWord(rowAmdWord) {}
+                                                                                       rowAndWord(rowAmdWord) {}
 
 vector<pair<string, int>> &CacheLine::getRowAmdWord()  {
-  return rowAmdWord;
+  return rowAndWord;
 }
 
 void CacheLine::setTag(const string &tag) {
@@ -28,7 +31,7 @@ void CacheLine::setTag(const string &tag) {
 }
 
 void CacheLine::setRowAmdWord(const vector<pair<string, int>> &rowAmdWord) {
-  CacheLine::rowAmdWord = rowAmdWord;
+  CacheLine::rowAndWord = rowAmdWord;
 }
 
 

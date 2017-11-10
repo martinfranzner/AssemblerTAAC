@@ -5,6 +5,8 @@
 #ifndef TAACCERTO_CACHELINE_H
 #define TAACCERTO_CACHELINE_H
 
+
+
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -12,7 +14,7 @@ using namespace std;
 class CacheLine {
 
   string tag;
-  vector<pair<string, int>> rowAmdWord;
+  vector<pair<string, int>> rowAndWord;
 
 public:
   const string &getTag() const;

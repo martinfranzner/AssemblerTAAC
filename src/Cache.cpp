@@ -16,34 +16,31 @@ int Cache::consultCache(Memory &memory, unsigned long pc) {
   string tag = bin.substr(0, 11);                 //primeiros 11
   string row = bin.substr(12, 7);                 //os sete depois dos 11 do tag
 
-  int indexCashLine = std::stoi(row, nullptr, 2); // transforma o row em string de binario para int
+  auto indexCashLine = static_cast<unsigned long>(std::stoi(row, nullptr, 2)); // transforma o row em string de binario para int
 
-  if (cacheLines.at(indexCashLine).getTag() == "")
+  if (cacheLines.at(indexCashLine).getTag().empty())
   {
-    cout << "Cache miss" << endl;
     this->cacheMiss++;
-    vector<pair<string, int>> c;
-    c = memory.returnToCache(tag, pc);
+    vector<pair<string, int>> rowAndWord;
+    rowAndWord = memory.returnToCache(tag, pc);
     cacheLines.at(indexCashLine).setTag(tag);
-    cacheLines.at(indexCashLine).setRowAmdWord(c);
+    cacheLines.at(indexCashLine).setRowAmdWord(rowAndWord);
 
     auto values = find_if(cacheLines.at(indexCashLine).getRowAmdWord().begin(),
                           cacheLines.at(indexCashLine).getRowAmdWord().end(),
-                          [&word](const pair<string, int> &p) { return p.first == word; }
-    );
-
-    pair<string, int> aux = *values;
-    return aux.second;
+                          [&word](const pair<string, int> &pair)
+                          { return pair.first == word; }
+                         );
+    return (*values).second;
   }
   else {
     int tag2 = std::stoi(cacheLines.at(indexCashLine).getTag(), nullptr, 2);
     if (stoi(tag, nullptr, 2) == tag2) {
-      cout << "Cache hit" << endl;
       this->cacheHit++;
       auto values = find_if(cacheLines.at(indexCashLine).getRowAmdWord().begin(),
                             cacheLines.at(indexCashLine).getRowAmdWord().end(),
                             [&word](const pair<string, int> &p) { return p.first == word; }
-      );
+                           );
       pair<string, int> aux = *values;
       return aux.second;
     }
@@ -53,45 +50,44 @@ int Cache::consultCache(Memory &memory, unsigned long pc) {
 
 }
 
-void Cache::setMemoryAddres(const string &bin, string &word, string &tag, string &row) const {
-  word = bin.substr(bin.length() - 6);//ultimos 6
-  tag = bin.substr(0, 11);//primeiros 11
-  row = bin.substr(12, 7);//os sete depois dos 11 do tag
 
-}
-
-
-int Cache::updateCache(Memory &memory, unsigned int pc) {
-  bitset<24> b = pc;
+int Cache::updateCache(Memory &memory, unsigned int PC) {
+  bitset<24> b = PC;
   string bin = b.to_string();
 
-  string otherWord = "";
-  string otherTag = "";
-  string otherRow = "";
+  string otherWord = bin.substr(bin.length() - 6);//ultimos 6
+  string otherTag = bin.substr(0, 11);//primeiros 11
+  string otherRow = bin.substr(12, 7);//os sete depois dos 11 do tag
 
-  setMemoryAddres(bin, otherWord, otherTag, otherRow);
+  auto searchedRow = static_cast<unsigned long>(std::stoi(otherRow, nullptr, 2));
 
-  int linhaR = std::stoi(otherRow, nullptr, 2);
-
-  if (this->cacheLines.at(linhaR).getTag() == "") {
-    return this->consultCache(memory, pc);
+  if (cacheLines.at(searchedRow).getTag().empty()) {
+    return this->consultCache(memory, PC);
   }
   else {
-    int tag = std::stoi(this->cacheLines.at(linhaR).getTag(), nullptr, 2);
+    int tag = std::stoi(cacheLines.at(searchedRow).getTag(), nullptr, 2);
     if (stoi(otherTag, nullptr, 2) == tag) {
-      cout << "Cache hit" << endl;
-      this->cacheHit++;
-      for (int i = 0; i < 64; i++) {
-        if (this->cacheLines.at(linhaR).getRowAmdWord().at(i).first == otherWord)
+      cacheHit++;
+      for (auto i = 0; i < 64; i++)
+      {
+        if (cacheLines.at(searchedRow).getRowAmdWord().at(i).first == otherWord)
         {
-          this->cacheLines.at(linhaR).getRowAmdWord().at(i).second = memory.getMemoria()->at(pc);
-          return this->cacheLines.at(linhaR).getRowAmdWord().at(i).second;
+          cacheLines.at(searchedRow).getRowAmdWord().at(i).second = memory.getMemoria()->at(PC);
+          return cacheLines.at(searchedRow).getRowAmdWord().at(i).second;
         }
       }
     }
   }
 
   return 0;
+}
+
+int Cache::getCacheHit() const {
+  return cacheHit;
+}
+
+int Cache::getCacheMiss() const {
+  return cacheMiss;
 }
 
 

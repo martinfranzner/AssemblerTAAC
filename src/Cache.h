@@ -29,13 +29,17 @@ private:
 
 
 public:
+
+  int getCacheHit() const;
+
+  int getCacheMiss() const;
+
   Cache();
 
   int consultCache(Memory &memory, unsigned long pc);
 
-  int updateCache(Memory &memory, unsigned int pc);
+  int updateCache(Memory &memory, unsigned int PC);
 
-  void setMemoryAddres(const string &bin, string &word, string &tag, string &row) const;
 };
 
 
