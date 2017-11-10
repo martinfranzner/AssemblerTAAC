@@ -2,8 +2,8 @@
 // Created by eborsa on 01/11/17.
 //
 
-#include "src/catch.hpp"
-#include "src/Loader.hpp"
+#include "catch.hpp"
+#include "Loader.hpp"
 
 using namespace std;
 

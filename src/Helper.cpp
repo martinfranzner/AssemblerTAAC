@@ -4,8 +4,11 @@
 
 #include <fstream>
 #include "Helper.h"
-
-vector<unsigned int> Helper::getVectorFromFile(const string &instructionsPath) const {
+#include <string>
+Helper::Helper(){
+    
+}
+vector<unsigned int> Helper::getVectorFromFile(string instructionsPath){
   ifstream file;
   string linha="";
   vector<unsigned int> instructionsVector;

@@ -19,7 +19,7 @@ class CPU {
 private:
   int FL;
   unsigned int PC;
-  std::vector<unsigned int> regVet;
+  std::vector<int> regVet;
 public:
   CPU();
 
