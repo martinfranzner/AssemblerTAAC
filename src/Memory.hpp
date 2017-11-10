@@ -15,6 +15,12 @@ using addres = unsigned int;
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include<math.h>
+#include <bitset>
+#include <utility>
+#include <limits>
+#include <string>
+
 using namespace std;
 class Memory {
 private:
@@ -23,6 +29,7 @@ private:
 public:
     Memory();
     vector<unsigned int>* getMemoria(){return &this->memory;};
+    vector<pair<string, int>> returnToCache(string t, unsigned int pc);
     
 };
 #endif /* Memory_hpp */

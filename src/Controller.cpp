@@ -8,7 +8,7 @@ Controller::Controller() {}
 
 void Controller::init(string instructionPath, unsigned int &memInitPos) {
   this->instructionVector = helper.getVectorFromFile(instructionPath);
-  this->loader.insereMemoria(this->memory, memInitPos,instructionVector );
+  this->loader.insereMemoria(this->memory, memInitPos, instructionVector);
   this->cpu.requireInstruction(this->instructionVector, this->cache, this->memory, memInitPos);
 }
 

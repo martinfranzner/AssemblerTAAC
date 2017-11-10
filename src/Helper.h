@@ -6,13 +6,13 @@
 #define TAACCERTO_HELPER_H
 
 #include <iostream>
-#include "vector"
+#include <vector>
 using namespace std;
 
 class Helper {
 public:
-
-  vector<unsigned int> getVectorFromFile(const string &instructionsPath) const;
+  Helper();
+  vector<unsigned int> getVectorFromFile(string instructionsPath);
 
 };
 

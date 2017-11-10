@@ -8,6 +8,9 @@
 
 #include "Loader.hpp"
 #include "Helper.h"
+#include "Memory.hpp"
+#include "Cache.h"
+#include "CPU.hpp"
 
 class Controller {
 

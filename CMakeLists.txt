@@ -11,6 +11,13 @@ set(SOURCE_FILES src/main.cpp
         src/Memory.hpp
         src/Memory.cpp
         src/catch.hpp
-
-        TestesExemplo.cpp src/Controller.cpp src/Controller.h src/Cache.cpp src/Cache.h src/MemoryAddress.cpp src/MemoryAddress.h src/Helper.cpp src/Helper.h)
+        src/TestesExemplo.cpp
+        src/Controller.cpp
+        src/Controller.h
+        src/Cache.cpp
+        src/Cache.h
+        src/Helper.cpp
+        src/Helper.h
+        src/TestesExemplo.cpp
+        src/CacheLine.cpp src/CacheLine.h)
 add_executable(TaacCerto ${SOURCE_FILES})
