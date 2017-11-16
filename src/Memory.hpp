@@ -29,7 +29,7 @@ private:
 public:
     Memory();
     vector<unsigned int>* getMemoria(){return &this->memory;};
-    vector<pair<string, int>> returnToCache(string t, unsigned int pc);
+    vector<pair<string, int>> getRowAndWord(string string1, unsigned int pc);
     
 };
 #endif /* Memory_hpp */

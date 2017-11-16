@@ -3,82 +3,76 @@
 
 Cache::Cache() {
   CacheLine inicializador;
-  for (int i = 0; i < 128; i++) {
+  for (int i = 0; i < CACHE_LINES; i++)
+  {
     this->cacheLines.push_back(inicializador);
   }
 }
 
-int Cache::consultCache(Memory &memory, unsigned long pc) {
+int Cache::getWord(Memory &memory, unsigned long pc) {
   bitset<24> bit = pc;
   string bin = bit.to_string();
-
   string word = bin.substr(bin.length() - 6);     //ultimos 6
   string tag = bin.substr(0, 11);                 //primeiros 11
   string row = bin.substr(12, 7);                 //os sete depois dos 11 do tag
-
-  auto indexCashLine = static_cast<unsigned long>(std::stoi(row, nullptr, 2)); // transforma o row em string de binario para int
-
-  if (cacheLines.at(indexCashLine).getTag().empty())
-  {
-    this->cacheMiss++;
-    vector<pair<string, int>> rowAndWord;
-    rowAndWord = memory.returnToCache(tag, pc);
-    cacheLines.at(indexCashLine).setTag(tag);
-    cacheLines.at(indexCashLine).setRowAmdWord(rowAndWord);
-
-    auto values = find_if(cacheLines.at(indexCashLine).getRowAmdWord().begin(),
-                          cacheLines.at(indexCashLine).getRowAmdWord().end(),
-                          [&word](const pair<string, int> &pair)
-                          { return pair.first == word; }
-                         );
-    return (*values).second;
-  }
-  else {
-    int tag2 = std::stoi(cacheLines.at(indexCashLine).getTag(), nullptr, 2);
-    if (stoi(tag, nullptr, 2) == tag2) {
-      this->cacheHit++;
-      auto values = find_if(cacheLines.at(indexCashLine).getRowAmdWord().begin(),
-                            cacheLines.at(indexCashLine).getRowAmdWord().end(),
-                            [&word](const pair<string, int> &p) { return p.first == word; }
-                           );
-      pair<string, int> aux = *values;
-      return aux.second;
-    }
-  }
-
-  return 0;
-
+  auto cacheRow = static_cast<unsigned long>(std::stoi(row, nullptr, 2));
+  if (cacheLines.at(cacheRow).getTag().empty())
+    return cachedMissed(memory, pc, word, tag, cacheRow);
+  else
+    return cacheHitted(word, tag, cacheRow);
 }
 
+
+int Cache::cachedMissed(Memory &memory, unsigned long pc, const string &word, const string &tag,
+                        unsigned long row)
+{
+  vector<pair<string, int>> rowAndWord;
+  rowAndWord = memory.getRowAndWord(tag, pc);
+  cacheLines.at(row).setTag(tag);
+  cacheLines.at(row).setRowAmdWord(rowAndWord);
+  cacheMiss++;
+  for(auto wordInRow: cacheLines.at(row).getRowAmdWord())
+    if(wordInRow.first == word)
+      return wordInRow.second;
+}
+
+int Cache::cacheHitted(const string &word, const string &tag, unsigned long cacheRow) {
+  int tag2 = stoi(cacheLines.at(cacheRow).getTag(), nullptr, 2);
+  if (stoi(tag, nullptr, 2) == tag2)
+  {
+    for(auto wordInCacheRow: cacheLines.at(cacheRow).getRowAmdWord())
+     if(wordInCacheRow.first == word)
+     {
+       cacheHit++;
+       return wordInCacheRow.second;
+     }
+  }
+}
 
 int Cache::updateCache(Memory &memory, unsigned int PC) {
   bitset<24> b = PC;
   string bin = b.to_string();
-
   string otherWord = bin.substr(bin.length() - 6);//ultimos 6
   string otherTag = bin.substr(0, 11);//primeiros 11
   string otherRow = bin.substr(12, 7);//os sete depois dos 11 do tag
-
   auto searchedRow = static_cast<unsigned long>(std::stoi(otherRow, nullptr, 2));
 
-  if (cacheLines.at(searchedRow).getTag().empty()) {
-    return this->consultCache(memory, PC);
-  }
-  else {
-    int tag = std::stoi(cacheLines.at(searchedRow).getTag(), nullptr, 2);
-    if (stoi(otherTag, nullptr, 2) == tag) {
-      cacheHit++;
+  if (this->cacheLines.at(searchedRow).getTag().empty())
+    return this->getWord(memory, PC);
+  else
+  {
+    int tag = std::stoi(this->cacheLines.at(searchedRow).getTag(), nullptr, 2);
+    if (stoi(otherTag, nullptr, 2) == tag)
+    {
+      this->cacheHit++;
       for (auto i = 0; i < 64; i++)
-      {
-        if (cacheLines.at(searchedRow).getRowAmdWord().at(i).first == otherWord)
+        if (this->cacheLines.at(searchedRow).getRowAmdWord().at(i).first == otherWord)
         {
-          cacheLines.at(searchedRow).getRowAmdWord().at(i).second = memory.getMemoria()->at(PC);
-          return cacheLines.at(searchedRow).getRowAmdWord().at(i).second;
+          this->cacheLines.at(searchedRow).getRowAmdWord().at(i).second = memory.getMemoria()->at(PC);
+          return this->cacheLines.at(searchedRow).getRowAmdWord().at(i).second;
         }
-      }
     }
   }
-
   return 0;
 }
 

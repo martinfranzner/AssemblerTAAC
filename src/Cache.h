@@ -18,6 +18,7 @@
 
 #define BLOCKSIZE 64
 
+#define CACHE_LINES 128
 using namespace std;
 
 class Cache {
@@ -36,10 +37,13 @@ public:
 
   Cache();
 
-  int consultCache(Memory &memory, unsigned long pc);
+  int getWord(Memory &memory, unsigned long pc);
 
   int updateCache(Memory &memory, unsigned int PC);
 
+  int cachedMissed(Memory &memory, unsigned long pc, const string &word, const string &tag, unsigned long row);
+
+  int cacheHitted(const string &word, const string &tag, unsigned long cacheRow);
 };
 
 
