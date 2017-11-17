@@ -70,7 +70,7 @@ MemoryAddres Memory::getMemoryAddres2(string searchedTag, unsigned int pc) {
 //  string wordInMemory = "";
 //  int wordInMainMemory = -1;
 //  bitset<24> binMem;
-//  MemoryAddres cacheLine;
+//  MemoryAddres CacheLine;
 //  int j = 0;
 //  for (int wordPosition = pc; wordPosition < this->wordsInMemory.size(); wordPosition++)
 //  {
@@ -81,13 +81,13 @@ MemoryAddres Memory::getMemoryAddres2(string searchedTag, unsigned int pc) {
 //    if (searchedTag == memoryBlockTag)
 //    {
 //      wordInMainMemory = this->wordsInMemory.at(wordPosition);
-//      cacheLine.setWordAt(to_string(wordInMainMemory),j);
+//      CacheLine.setWordAt(to_string(wordInMainMemory),j);
 //      j++;
 //    }
 //    if (j == 64)
 //      break;
 //  }
-//  return cacheLine;
+//  return CacheLine;
 }
 
 

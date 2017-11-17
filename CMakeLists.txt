@@ -19,5 +19,9 @@ set(SOURCE_FILES src/main.cpp
         src/Helper.cpp
         src/Helper.h
         src/TestesExemplo.cpp
-        src/MemoryAddres.cpp src/MemoryAddres.h src/cacheLine.cpp src/cacheLine.h)
+        src/MemoryAddres.cpp
+        src/MemoryAddres.h
+        src/CacheLine.cpp
+        src/CacheLine.h
+        )
 add_executable(TaacCerto ${SOURCE_FILES})

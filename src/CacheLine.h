@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class cacheLine {
+class CacheLine {
   string tag;
   string row;
   vector<pair<string, int>> words;
