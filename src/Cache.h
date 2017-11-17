@@ -8,7 +8,7 @@
 
 #include <vector>
 #include "Memory.hpp"
-#include "CacheLine.h"
+#include "MemoryAddres.h"
 #include<math.h>
 #include <utility>
 #include <algorithm>
@@ -23,8 +23,7 @@ using namespace std;
 
 class Cache {
 private:
-  vector< CacheLine > cacheLines;
-  unsigned int position = 0;
+  vector< MemoryAddres > cacheLines;
   int cacheHit = 0;
   int cacheMiss = 0;
 
@@ -41,9 +40,9 @@ public:
 
   int updateCache(Memory &memory, unsigned int PC);
 
-  int cachedMissed(Memory &memory, unsigned long pc, const string &word, const string &tag, unsigned long row);
+  int cachedMissed(Memory &memory, unsigned long pc, unsigned long cacheRow, MemoryAddres newAddressRequest);
 
-  int cacheHitted(const string &word, const string &tag, unsigned long cacheRow);
+  int cacheHitted(unsigned long cacheRow, MemoryAddres &newAddressRequest);
 };
 
 

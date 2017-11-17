@@ -20,16 +20,19 @@ using addres = unsigned int;
 #include <utility>
 #include <limits>
 #include <string>
+#include "MemoryAddres.h"
 
 using namespace std;
-class Memory {
+class Memory
+{
 private:
-    vector<unsigned int> memory;
+    vector<unsigned int> wordsInMemory;
     
 public:
-    Memory();
-    vector<unsigned int>* getMemoria(){return &this->memory;};
-    vector<pair<string, int>> getRowAndWord(string string1, unsigned int pc);
+  Memory();
+  vector<unsigned int>* getMemoria(){return &this->wordsInMemory;};
+  vector<pair<string, int>> getMemoryAddres(string searchedTag, unsigned int pc);
+  MemoryAddres getMemoryAddres2(string searchedTag, unsigned int pc);
     
 };
 #endif /* Memory_hpp */

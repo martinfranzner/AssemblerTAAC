@@ -9,31 +9,86 @@
 #include "Memory.hpp"
 
 Memory::Memory() {
-  this->memory.resize(16777216);
+  this->wordsInMemory.resize(16777216);
 }
 
-vector<pair<string, int>> Memory::getRowAndWord(string string1, unsigned int pc){
-    string tagMem = "";
-    string bin = "";
-    string wordMem = "";
-    bitset<24> binMem;
-    vector<pair<string, int>> cacheWord(64);
-    int j = 0;
-    for (int i = pc; i < (int)this->memory.size(); i++)
+vector<pair<string, int>> Memory::getMemoryAddres(string searchedTag, unsigned int pc) {
+  string memoryBlockTag = "";
+  string binary = "";
+  string wordAddrresInMemory = "";
+  int wordValue = -1;
+  bitset<24> binMem;
+  vector<pair<string, int>> cacheLine(64);
+  int j = 0;
+  for (int wordPosition = pc; wordPosition < this->wordsInMemory.size(); wordPosition++)
+  {
+    binMem = wordPosition;
+    binary = binMem.to_string();
+    wordAddrresInMemory = binary.substr(binary.length() - 6);
+    memoryBlockTag = binary.substr(0, 11);
+    if (searchedTag == memoryBlockTag)
     {
-        binMem = i;
-        bin = binMem.to_string();
-        wordMem = bin.substr(bin.length() - 6);
-        tagMem = bin.substr(0, 11);
-        if (string1.compare(tagMem) == 0)
-        {
-            cacheWord.at(j) = *new pair<string, int>(wordMem, this->memory.at(i));
-            j++;
-        }
-        if (j == 64)
-            break;
+//      Aqui atualiza as palavras
+      wordValue = this->wordsInMemory.at(wordPosition);
+      cacheLine.at(j) = {wordAddrresInMemory, wordValue};
+      j++;
     }
-    return cacheWord;
+    if (j == 64)
+      break;
+  }
+  return cacheLine;
 }
+
+MemoryAddres Memory::getMemoryAddres2(string searchedTag, unsigned int pc) {
+  string memoryBlockTag = "";
+  string binary = "";
+  string wordAddrresInMemory = "";
+  int wordValue = -1;
+  bitset<24> binMem;
+  MemoryAddres cacheLine;
+  int j = 0;
+  for (int wordPosition = pc; wordPosition < this->wordsInMemory.size(); wordPosition++)
+  {
+    binMem = wordPosition;
+    binary = binMem.to_string();
+    wordAddrresInMemory = binary.substr(binary.length() - 6);
+    memoryBlockTag = binary.substr(0, 11);
+    if (searchedTag == memoryBlockTag)
+    {
+//      Aqui atualiza as palavras
+      wordValue = this->wordsInMemory.at(wordPosition);
+      cacheLine.setWordAt(wordAddrresInMemory,wordValue,j);
+      j++;
+    }
+    if (j == 64)
+      break;
+  }
+  return cacheLine;
+
+//  string memoryBlockTag = "";
+//  string binary = "";
+//  string wordInMemory = "";
+//  int wordInMainMemory = -1;
+//  bitset<24> binMem;
+//  MemoryAddres cacheLine;
+//  int j = 0;
+//  for (int wordPosition = pc; wordPosition < this->wordsInMemory.size(); wordPosition++)
+//  {
+//    binMem = wordPosition;
+//    binary = binMem.to_string();
+//    wordInMemory = binary.substr(binary.length() - 6);
+//    memoryBlockTag = binary.substr(0, 11);
+//    if (searchedTag == memoryBlockTag)
+//    {
+//      wordInMainMemory = this->wordsInMemory.at(wordPosition);
+//      cacheLine.setWordAt(to_string(wordInMainMemory),j);
+//      j++;
+//    }
+//    if (j == 64)
+//      break;
+//  }
+//  return cacheLine;
+}
+
 
 
