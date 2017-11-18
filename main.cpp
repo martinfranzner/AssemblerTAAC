@@ -1,23 +1,27 @@
 #include <iostream>
-#include "Controller/Controller.h"
+#include "Controller.h"
 
 #define CATCH_CONFIG_RUNNER
 #include "catch.hpp"
 
 using namespace std;
 namespace {
-    //string basePath = "/Users/martinfranzner/Documents/PUC COMPUTAÇÃO/4o semestre/Arquitetura Computadores 2/AssemblerTAAC-master/txtFiles/";
-    std::string basePath = "/home/eborsa/CLionProjects/Martin/AssemblerTAAC/txtFiles/";
+    string basePath = "/Users/martinfranzner/Documents/PUC COMPUTAÇÃO/4o semestre/Arquitetura Computadores 2/AssemblerTAAC-master/txtFiles/";
+    //std::string basePath = "/Users/martinfranzner/Documents/PUC COMPUTAÇÃO/4o semestre/Arquitetura Computadores 2/Assembler/txtFiles";
 }
 
 //#define UNIT_TEST_ENABLE
 #ifndef UNIT_TEST_ENABLE
 
 int main(int argc, const char *argv[]) {
+   
+    
+    
   string instructionPath = basePath + "MDCcodificado.txt";
   Controller controller;
   unsigned int initPosition = 0;
   controller.init(instructionPath, initPosition);
+
 
   return 0;
 }

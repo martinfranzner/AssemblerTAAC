@@ -2055,7 +2055,7 @@ namespace Catch{
     #if defined(__ppc64__) || defined(__ppc__)
         #define CATCH_TRAP() \
                 __asm__("li r0, 20\nsc\nnop\nli r0, 37\nli r4, 2\nsc\nnop\n" \
-                : : : "wordsInMemory","r0","r3","r4" ) /* NOLINT */
+                : : : "memory","r0","r3","r4" ) /* NOLINT */
     #else
         #define CATCH_TRAP() __asm__("int $3\n" : : /* NOLINT */ )
     #endif

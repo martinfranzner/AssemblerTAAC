@@ -29,7 +29,8 @@ private:
 public:
     Memory();
     vector<unsigned int>* getMemoria(){return &this->memory;};
-    vector<pair<string, int>> returnToCache(string t, unsigned int pc);
+    vector<int> grabOnMemory(int t, int r, int w, unsigned int pc);
+    vector<int> updateMemory(int t, int r, int w, unsigned int pc,vector<int> vecW);
     
 };
 #endif /* Memory_hpp */

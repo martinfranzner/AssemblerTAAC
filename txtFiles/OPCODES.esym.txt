@@ -4,7 +4,7 @@
 ;
 ; Labels:
 ;	Rx, Ry: registers
-;	M: memory contents
+;	M: wordsInMemory contents
 ;	I: immediate value
 ;
 
