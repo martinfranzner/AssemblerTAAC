@@ -46,15 +46,13 @@ void CPU::requireInstruction
         mem = cache.getWord(memory, (PC + 1));
         if(mem > instructionVector.size())
         {
-          mem = cache.updateCache(memory, PC + 1);
+          mem = cache.getWord(memory, PC + 1);
           regVet[instructionVector.at(PC)] = memory.getMemoria()->at(mem);
         }
         else
-        {
           cout<<"Erro ao acessar memoria, instrucao MOV REG, MEM"<<endl;
-        }
-        PC++;//agora esta na MEM
-        PC++;//agora esta na proxima instrucao
+        PC++;
+        PC++;
         break;
       case 4: // MOV MEM, REG
         PC++;

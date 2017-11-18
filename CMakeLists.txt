@@ -4,24 +4,22 @@ project(TaacCerto)
 set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCE_FILES src/main.cpp
-        src/CPU.hpp
-        src/CPU.cpp
-        src/Loader.cpp
-        src/Loader.hpp
-        src/Memory.hpp
-        src/Memory.cpp
+        src/CPU/CPU.hpp
+        src/CPU/CPU.cpp
+        src/Loader/Loader.cpp
+        src/Loader/Loader.hpp
+        src/Memory/Memory.hpp
+        src/Memory/Memory.cpp
         src/catch.hpp
         src/TestesExemplo.cpp
-        src/Controller.cpp
-        src/Controller.h
-        src/Cache.cpp
-        src/Cache.h
-        src/Helper.cpp
-        src/Helper.h
+        src/Controller/Controller.cpp
+        src/Controller/Controller.h
+        src/Cache/Cache.cpp
+        src/Cache/Cache.h
+        src/Helper/Helper.cpp
+        src/Helper/Helper.h
         src/TestesExemplo.cpp
-        src/MemoryAddres.cpp
-        src/MemoryAddres.h
-        src/CacheLine.cpp
-        src/CacheLine.h
-        )
+        src/MemoryAddres/MemoryAddres.cpp
+        src/MemoryAddres/MemoryAddres.h
+        src/CacheLine/CacheLine.cpp src/CacheLine/CacheLine.h)
 add_executable(TaacCerto ${SOURCE_FILES})

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Controller.h"
+#include "Controller/Controller.h"
 
 #define CATCH_CONFIG_RUNNER
 #include "catch.hpp"

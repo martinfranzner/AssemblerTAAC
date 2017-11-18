@@ -11,8 +11,8 @@
 
 
 
-#include "Memory.hpp"
-#include "Cache.h"
+#include "../Memory/Memory.hpp"
+#include "../Cache/Cache.h"
 #include <cstdio>
 
 class CPU {

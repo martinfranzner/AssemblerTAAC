@@ -20,10 +20,6 @@ const string &MemoryAddres::getTag() const {
   return tag;
 }
 
-void MemoryAddres::setMemoryBlockTag(const string &tag) {
-  MemoryAddres::tag = tag;
-}
-
 
 MemoryAddres::MemoryAddres(int PC) {
   bitset<24> bit = PC;
@@ -51,9 +47,6 @@ const vector<pair<string, int>> &MemoryAddres::getWords() const {
   return words;
 }
 
-void MemoryAddres::setWords(const vector<pair<string, int>> &words) {
-  MemoryAddres::words = words;
-}
 
 
 

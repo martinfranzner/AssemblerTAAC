@@ -6,11 +6,11 @@
 #define TAACCERTO_CONTROLLER_H
 
 
-#include "Loader.hpp"
-#include "Helper.h"
-#include "Memory.hpp"
-#include "Cache.h"
-#include "CPU.hpp"
+#include "../Loader/Loader.hpp"
+#include "../Helper/Helper.h"
+#include "../Memory/Memory.hpp"
+#include "../Cache/Cache.h"
+#include "../CPU/CPU.hpp"
 
 class Controller {
 

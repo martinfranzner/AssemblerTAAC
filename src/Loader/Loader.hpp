@@ -1,8 +1,8 @@
 #ifndef Inicializador_hpp
 #define Inicializador_hpp
 
-#include "Memory.hpp"
-#include "CPU.hpp"
+#include "../Memory/Memory.hpp"
+#include "../CPU/CPU.hpp"
 
 #include <stdio.h>
 #include <string>

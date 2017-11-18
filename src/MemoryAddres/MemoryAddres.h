@@ -21,7 +21,6 @@ class MemoryAddres {
 public:
   const vector<pair<string, int>> &getWords() const;
 
-  void setWords(const vector<pair<string, int>> &words);
 
   void setWordAt(string word, int value, int position);
 
@@ -31,7 +30,6 @@ public:
 
   const string &getTag() const;
 
-  void setMemoryBlockTag(const string &tag);
 
   MemoryAddres();
 

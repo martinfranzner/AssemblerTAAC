@@ -3,7 +3,7 @@
 //
 
 #include "catch.hpp"
-#include "Loader.hpp"
+#include "Loader/Loader.hpp"
 
 using namespace std;
 
