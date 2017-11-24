@@ -19,7 +19,7 @@ set(SOURCE_FILES src/main.cpp
         src/Helper/Helper.cpp
         src/Helper/Helper.h
         src/TestesExemplo.cpp
-        src/MemoryAddres/MemoryAddres.cpp
-        src/MemoryAddres/MemoryAddres.h
+        src/MemoryAddres/MemoryAddress.cpp
+        src/MemoryAddres/MemoryAddress.h
         src/CacheLine/CacheLine.cpp src/CacheLine/CacheLine.h)
 add_executable(TaacCerto ${SOURCE_FILES})

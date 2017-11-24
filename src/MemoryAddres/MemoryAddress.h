@@ -11,18 +11,13 @@
 
 using namespace std;
 
-class MemoryAddres {
+class MemoryAddress {
 
   string tag;
   string row;
   string word;
-  vector<pair<string, int>> words;
 
 public:
-  const vector<pair<string, int>> &getWords() const;
-
-
-  void setWordAt(string word, int value, int position);
 
   const string &getRow() const;
 
@@ -30,10 +25,9 @@ public:
 
   const string &getTag() const;
 
+  MemoryAddress();
 
-  MemoryAddres();
-
-  MemoryAddres(int PC);
+  MemoryAddress(int PC);
 };
 
 

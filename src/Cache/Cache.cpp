@@ -9,9 +9,11 @@ Cache::Cache() {
 
 int Cache::getWord(Memory &memory, unsigned long pc)
 {
-  MemoryAddres newAddressRequested(pc);
-  auto addresRow = static_cast<unsigned long>(std::stoi(newAddressRequested.getRow(), nullptr, 2));
-  if (this->cacheLines.at(addresRow).getTag() == newAddressRequested.getTag()) {
+  MemoryAddress newAddressRequested(pc);
+  auto addressRow = static_cast<unsigned long>(std::stoi(newAddressRequested.getRow(), nullptr, 2));
+  auto bla = this->cacheLines.at(addressRow).getTag();
+  auto blo = newAddressRequested.getTag();
+  if (this->cacheLines.at(addressRow).getTag() == newAddressRequested.getTag()) {
     cacheHitCounter++;
     return returnWord(newAddressRequested);
   }
@@ -22,37 +24,33 @@ int Cache::getWord(Memory &memory, unsigned long pc)
 }
 
 
-void Cache::cacheMissEvent(Memory &memory, unsigned long pc, MemoryAddres newAddressRequest) {
-  auto addresRow = static_cast<unsigned long>(std::stoi(newAddressRequest.getRow(), nullptr, 2));
+void Cache::cacheMissEvent(Memory &memory, unsigned long pc, MemoryAddress newAddressRequest) {
   cacheMissCounter++;
-  if (cacheLines.at(addresRow).getTag().empty())
+//    if(this->cacheLines.at(addressRow).getFlag() == "MODIFIED") {
+//      updateMemory(memory);
+//    }
+//  else
     this->updateCacheLine(memory, pc, newAddressRequest);
-  else
-  {
-    //    Atualiza a memoria principal com a cache
-    updateMemory(memory);  // <<<--------- AQUI MARTIN, Aqui está o problema.
-                           // No nosso caso da boa pq o prog eh pequeno.
-    this->updateCacheLine(memory, pc, newAddressRequest);
-  }
 }
 
 void Cache::updateMemory(Memory &) {
 
 }
 
-void Cache::updateCacheLine(Memory &memory, unsigned long pc, const MemoryAddres &newAddressRequest)
+void Cache::updateCacheLine(Memory &memory, unsigned long pc, const MemoryAddress &newAddressRequest)
 {
   auto addressRow = static_cast<unsigned long>(stoi(newAddressRequest.getRow(), nullptr, 2));
   CacheLine cacheLine;
   cacheLine = memory.getMemoryAddres(newAddressRequest.getTag(), pc);
   cacheLines.at(addressRow).setTag(newAddressRequest.getTag());
+  cacheLines.at(addressRow).setRow(newAddressRequest.getRow());
   cacheLines.at(addressRow).setWords(cacheLine.getWords());
   cacheLines.at(addressRow).setWords(cacheLine.getWords());
 }
 
-int Cache::returnWord(MemoryAddres &newAddressRequest) {
-  auto addresRow2 = static_cast<unsigned long>(std::stoi(newAddressRequest.getRow(), nullptr, 2));
-  for(auto wordInRow: this->cacheLines.at(addresRow2).getWords())
+int Cache::returnWord(MemoryAddress &newAddressRequest) {
+  auto addressRow2 = static_cast<unsigned long>(std::stoi(newAddressRequest.getRow(), nullptr, 2));
+  for(auto wordInRow: this->cacheLines.at(addressRow2).getWords())
     if(wordInRow.first == newAddressRequest.getWord())
       return wordInRow.second;
 }

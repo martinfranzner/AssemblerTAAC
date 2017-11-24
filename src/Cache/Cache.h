@@ -7,7 +7,7 @@
 
 
 #include "../Memory/Memory.hpp"
-#include "../MemoryAddres/MemoryAddres.h"
+#include "../MemoryAddres/MemoryAddress.h"
 #include "../CacheLine/CacheLine.h"
 #include<math.h>
 #include <utility>
@@ -37,11 +37,11 @@ public:
 
   int getWord(Memory &memory, unsigned long pc);
 
-  void cacheMissEvent(Memory &memory, unsigned long pc, MemoryAddres newAddressRequest);
+  void cacheMissEvent(Memory &memory, unsigned long pc, MemoryAddress newAddressRequest);
 
-  int returnWord(MemoryAddres &newAddressRequest);
+  int returnWord(MemoryAddress &newAddressRequest);
 
-  void updateCacheLine(Memory &memory, unsigned long pc, const MemoryAddres &newAddressRequest) ;
+  void updateCacheLine(Memory &memory, unsigned long pc, const MemoryAddress &newAddressRequest) ;
 
   void updateMemory(Memory &);
 };

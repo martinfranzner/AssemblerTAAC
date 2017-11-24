@@ -1,7 +1,7 @@
 #include "CPU.hpp"
 
 CPU::CPU() {
-  this->regVet = *new std::vector<int>(4);
+  this->regVet.reserve(4);
   this->FL = 0;
   this->PC = 0;
 }
@@ -25,9 +25,9 @@ void CPU::requireInstruction
       case 1: // HALT
         cout << "Number Of Cache Hit: " << cache.getCacheHit() << "\n";
         cout << "Number Of Cache Miss: " << cache.getCacheMiss() << "\n";
-        cout<< "Deseja continuar? 1 or 0\n"<<endl;
+        cout<< "Deseja continuar? \n(sim)->1  ou (nao)->0\n"<< endl;
         cin >> status;
-        if(status==0) {
+        if(!status) {
           cout << "fim do programa"<<endl;
           break;
         }
@@ -57,7 +57,7 @@ void CPU::requireInstruction
       case 4: // MOV MEM, REG
         PC++;
         reg1 = cache.getWord(memory, PC + 1);
-            memory.getMemoria()->at(memory.getMemoria()->at(PC)) = regVet[reg1];
+        memory.getMemoria()->at(memory.getMemoria()->at(PC)) = regVet[reg1];// ta atualizando a memoria
         PC++;
         PC++;
         break;

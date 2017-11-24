@@ -20,7 +20,7 @@ using addres = unsigned int;
 #include <utility>
 #include <limits>
 #include <string>
-#include "../MemoryAddres/MemoryAddres.h"
+#include "../MemoryAddres/MemoryAddress.h"
 #include "../CacheLine/CacheLine.h"
 
 using namespace std;
@@ -30,6 +30,8 @@ class CacheLine{
   string row;
   vector<pair<string, int>> words;
 public:
+  void setRow(const string &row);
+
   const string &getTag() const;
 
   void setTag(const string &tag);

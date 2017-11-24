@@ -17,6 +17,10 @@ class CacheLine {
 public:
   CacheLine();
 
+  const string &getRow() const;
+
+  void setRow(const string &row);
+
   const string &getTag() const;
 
   void setTag(const string &tag);

@@ -26,6 +26,10 @@ void CacheLine::setWordAt(string word, int value, int position) {
   this->words.at(position).second = value;
 }
 
+void CacheLine::setRow(const string &row) {
+  CacheLine::row = row;
+}
+
 CacheLine::CacheLine() {
   std::pair<string,int> initializer = {"",-1};
   this->tag = "";
@@ -33,3 +37,6 @@ CacheLine::CacheLine() {
     this->words.push_back(initializer);
   }
 }
+
+
+
